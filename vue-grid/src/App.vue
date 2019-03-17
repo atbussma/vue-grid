@@ -1,18 +1,31 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <h1>Vue.js - CSS Grid</h1>
+    <grid :numberOfColumns=2 :gridCells="['F', 'F', 'F', 'F']" />
+    <grid v-bind="{
+      numberOfColumns: 4,
+      gridCells: [
+        'E', 'E', 'E', 'E',
+        'E', 'E', 'E', 'E',
+        'E', 'E', 'E', 'E'
+      ],
+    }" />
+    <grid v-bind="gridData" />
   </div>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
+import { mapState } from 'vuex';
+import Grid from "./components/Grid.vue";
 
 export default {
   name: "app",
   components: {
-    HelloWorld
-  }
+    Grid
+  },
+  computed: mapState({
+    gridData: state => state.gridData,
+  }),
 };
 </script>
 
